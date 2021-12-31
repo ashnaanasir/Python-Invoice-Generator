@@ -2,4 +2,3 @@
 
 # for the invoice generation and gui
 reportlab
-tkinter

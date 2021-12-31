@@ -10,7 +10,7 @@ Copyright Information
 
 This file is Copyright (c) 2021 Ayesha Nasir.
 """
-from classes_data import Invoice, Vendor, Payer
+from src.classes.invoice import Invoice
 from reportlab.platypus import Paragraph, Spacer, SimpleDocTemplate, Table, TableStyle
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
@@ -45,7 +45,7 @@ def create_invoice(inv: Invoice) -> None:
     due = f'This invoice is due in: {inv.info["due"]}'
 
     # creating the doc structure:
-    doc = SimpleDocTemplate(f'Invoices/invoice.pdf', pagesize=letter, rightMargin=72,
+    doc = SimpleDocTemplate(f'../Invoices/invoice.pdf', pagesize=letter, rightMargin=72,
                             leftMargin=72, topMargin=72, bottomMargin=18,
                             title=f'Invoice for Payment',
                             author='XYZ Accountants')
@@ -72,19 +72,7 @@ def create_invoice(inv: Invoice) -> None:
                              ('LINEABOVE', (0, 1), (-1, 1), 1, black)]))
 
     styles = getSampleStyleSheet()  # for the styles used in the document.
-    story = []
-    story.append(Paragraph(title, styles['Title']))
-    story.append(Spacer(1, 12))
-    story.append(t)
-    story.append(Spacer(1, 12))
-    story.append(Spacer(1, 12))
-    story.append(Spacer(1, 12))
-    story.append(s_t)
-    story.append(Spacer(1, 12))
-    story.append(Spacer(1, 12))
-    story.append(Spacer(1, 12))
-    story.append(Spacer(1, 12))
-    story.append(Spacer(1, 12))
-    story.append(Spacer(1, 12))
-    story.append(Paragraph(due, styles['BodyText']))
+    story = [Paragraph(title, styles['Title']), Spacer(1, 12), t, Spacer(1, 12), Spacer(1, 12), Spacer(1, 12), s_t,
+             Spacer(1, 12), Spacer(1, 12), Spacer(1, 12), Spacer(1, 12), Spacer(1, 12), Spacer(1, 12),
+             Paragraph(due, styles['BodyText'])]
     doc.build(story)

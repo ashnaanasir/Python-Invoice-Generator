@@ -3,7 +3,7 @@
 Instructions
 ===============================
 
-This Python module contains the dataclasses used in this program.
+This Python module contains the payer class used in this program.
 
 Copyright Information
 ===============================
@@ -12,112 +12,6 @@ This file is Copyright (c) 2021 Ayesha Nasir.
 """
 from __future__ import annotations
 from typing import Dict, Any, Optional, Tuple, List
-
-
-# A class that represents a vendor.
-class Vendor:
-    """
-    A vendor class for the python program. A vendor class would more generally represent the freelance
-    worker/contractor that would be sending the invoice.
-
-    Instance Attributes:
-        - unique_id: an int that uniquely identifies the vendor
-        - name: a str representing the name of the vendor/contractor
-        - info: dict containing the remaining information about the vendor.
-
-    Representation Invariants:
-        - len(str(unique_id)) == 10
-        - name != '' and info != {}
-    """
-    unique_id: int
-    name: str
-    info: Dict[Any]
-    address: Optional[str]
-
-    #  initializes a new vendor.
-    def __init__(self, unique_id: int, name: str, info: Dict[Any]) -> None:
-        """
-        initializes a new vendor.
-        """
-        self.unique_id = unique_id
-        self.name = name
-        self.info = info
-        self.address = f'{self.info["street_num"]} {self.info["street_name"]} \n ' \
-                       f'{self.info["city"]}, {self.info["state"]} \n ' \
-                       f'{self.info["country"]}. {self.info["postal"]}'
-
-    def get_name(self) -> List[any]:
-        """
-        returns the name in lowercase characters
-        """
-        return [char.lower() for char in self.name]
-
-
-# Class that represents a payer or company which receives the invoice.
-class Payer:
-    """
-    A payer class for the python program. A vendor would be a company or person who the bill is sent
-    to be paid.
-
-    Instance Attributes:
-        - name: a str representing the name of the payer/company.
-        - info: dict containing rest of the information about the payer.
-
-    Representation Invariants:
-        - name != '' and info != {}
-    """
-    name: str
-    info: Dict[Any]
-    address: Optional[str]
-
-    #  initializes a new payer
-    def __init__(self, name: str, info: Dict[Any]) -> None:
-        """
-        initializes a new vendor.
-        """
-        self.name = name
-        self.info = info
-        self.address = f'{self.info["street_num"]} {self.info["street_name"]} \n' \
-                       f'{self.info["city"]}, {self.info["state"]} \n' \
-                       f'{self.info["country"]}. {self.info["postal"]}'
-
-    def get_name(self) -> List[any]:
-        """
-        returns the name in lowercase characters
-        """
-        return [char.lower() for char in self.name]
-
-
-# Class representing an invoice object
-class Invoice:
-    """
-    A class that represents an invoice between a set of payer and vendor for a specific amount and
-    services rendered.
-
-    Instance Attributes:
-        - vendor: Vendor that is sending the invoice.
-        - payer: Payer, reciever of the invoice.
-        - services: list of tuples containing the services/product, price and quantity.
-        - info: a dict containing rest of the information
-    """
-    vendor: Vendor
-    payer: Payer
-    services: List[Tuple]
-    info: Dict[Any]
-
-    def __init__(self, vendor: Vendor, payer: Payer, services: List[Tuple],
-                 info: Dict[Any]) -> None:
-        """
-        initializes a list object.
-        """
-        self.vendor = vendor
-        self.payer = payer
-        self.services = services
-        self.info = info
-        # total = 0
-        # for service in services:
-        #     total += int(service[1]) * int(service[2])
-        # self.info['total'] = total
 
 
 # Tree structure class for autocomplete tree
@@ -168,7 +62,7 @@ class AutocompleteTree:
         displays the current tree.
         """
         s = '  ' * depth + self.root + ' \n'
-        if self.subtrees == []:
+        if not self.subtrees:
             if self.item is not None:
                 s += ' ' * (depth + 1) + self.item.name + ' \n'
                 return s
@@ -185,9 +79,9 @@ class AutocompleteTree:
         """
         tree = self
         index = 0
-        for chr in lst:
-            if tree.get_subtree(chr) is not None:
-                tree = tree.get_subtree(chr)
+        for char in lst:
+            if tree.get_subtree(char) is not None:
+                tree = tree.get_subtree(char)
                 index += 1
             else:
                 return [tree, index]
@@ -204,7 +98,7 @@ class AutocompleteTree:
 
         recursing_subtree, index = self.subtree_finder(lst)
         lst = lst[index:]
-        while lst != []:
+        while lst:
             first_letter = lst.pop(0)  # removes the first alphabet again
             current_tree = AutocompleteTree(first_letter, [])  # creates a tree object
             recursing_subtree.subtrees.append(current_tree)  # adds it as a subtree

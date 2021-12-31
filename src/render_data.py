@@ -10,13 +10,15 @@ Copyright Information
 
 This file is Copyright (c) 2021 Ayesha Nasir.
 """
-from classes_data import Vendor, Payer, AutocompleteTree
+from src.classes.vendor import Vendor
+from src.classes.autocomplete_tree import AutocompleteTree
+from src.classes.payer import Payer
 from csv import reader
 
 
 list_vendors = []  # creating a list of vendors for creation of the autocomplete tree.
 
-with open('data/vendor_data.csv', 'r') as read_obj:
+with open('../data/vendor_data.csv', 'r') as read_obj:
     csv_reader = reader(read_obj)
     next(csv_reader)  # to skip the header file.
     # Iterate over each row in the csv using reader object
@@ -42,7 +44,7 @@ with open('data/vendor_data.csv', 'r') as read_obj:
 
 list_payers = []  # creating a list of possible payers for creation of autocomplete tree.
 
-with open('data/payer_data2.csv', 'r') as read_obj:
+with open('../data/payer_data2.csv', 'r') as read_obj:
     csv_reader = reader(read_obj)
     next(csv_reader)  # to skip the header file.
     # Iterate over each row in the csv using reader object
@@ -64,6 +66,8 @@ with open('data/payer_data2.csv', 'r') as read_obj:
         list_payers.append(payer)
 
 
+# Creating autocomplete tree for the payer
+
 autocomplete_tree_payer = AutocompleteTree()
 
 for p in list_payers:
@@ -71,6 +75,10 @@ for p in list_payers:
         'list': p.get_name(),
         'item': p
     })
+
+
+# creating autocomplete tree for the Vendor
+
 
 autocomplete_tree_vendor = AutocompleteTree()
 

@@ -12,7 +12,7 @@ This file is Copyright (c) 2021 Ayesha Nasir.
 """
 import webbrowser
 from tkinter import *
-from classes_data import Vendor, Payer, Invoice, AutocompleteTree
+from src.classes.invoice import Invoice
 from render_data import autocomplete_tree_payer, autocomplete_tree_vendor
 from pdf_invoice_generator import create_invoice
 
@@ -202,7 +202,7 @@ def generate_invoice(e) -> None:
 
     create_invoice(invoice)
 
-    webbrowser.open_new('Invoices/invoice.pdf')
+    webbrowser.open_new('/Invoices/invoice.pdf')
     print('Invoice should automatically open in a chrome window, if it doesn\'t, please navigate '
           'to the invoice folder.')
 
