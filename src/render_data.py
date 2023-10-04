@@ -10,15 +10,15 @@ Copyright Information
 
 This file is Copyright (c) 2021 Ayesha Nasir.
 """
-from src.classes.vendor import Vendor
-from src.classes.autocomplete_tree import AutocompleteTree
-from src.classes.payer import Payer
+from classes.vendor import Vendor
+from classes.autocomplete_tree import AutocompleteTree
+from classes.payer import Payer
 from csv import reader
 
 
 list_vendors = []  # creating a list of vendors for creation of the autocomplete tree.
 
-with open('../data/vendor_data.csv', 'r') as read_obj:
+with open('data/vendor_data.csv', 'r') as read_obj:
     csv_reader = reader(read_obj)
     next(csv_reader)  # to skip the header file.
     # Iterate over each row in the csv using reader object
@@ -44,7 +44,7 @@ with open('../data/vendor_data.csv', 'r') as read_obj:
 
 list_payers = []  # creating a list of possible payers for creation of autocomplete tree.
 
-with open('../data/payer_data2.csv', 'r') as read_obj:
+with open('data/payer_data.csv', 'r') as read_obj:
     csv_reader = reader(read_obj)
     next(csv_reader)  # to skip the header file.
     # Iterate over each row in the csv using reader object

@@ -12,8 +12,8 @@ This file is Copyright (c) 2021 Ayesha Nasir.
 """
 from __future__ import annotations
 from typing import Dict, Any, Optional, Tuple, List
-from payer import Payer
-from vendor import Vendor
+from .payer import Payer
+from .vendor import Vendor
 
 
 # Class representing an invoice object

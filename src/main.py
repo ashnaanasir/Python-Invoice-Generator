@@ -12,7 +12,7 @@ This file is Copyright (c) 2021 Ayesha Nasir.
 """
 import webbrowser
 from tkinter import *
-from src.classes.invoice import Invoice
+from classes.invoice import Invoice
 from render_data import autocomplete_tree_payer, autocomplete_tree_vendor
 from pdf_invoice_generator import create_invoice
 

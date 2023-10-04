@@ -10,7 +10,7 @@ Copyright Information
 
 This file is Copyright (c) 2021 Ayesha Nasir.
 """
-from src.classes.invoice import Invoice
+from classes.invoice import Invoice
 from reportlab.platypus import Paragraph, Spacer, SimpleDocTemplate, Table, TableStyle
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
@@ -45,7 +45,7 @@ def create_invoice(inv: Invoice) -> None:
     due = f'This invoice is due in: {inv.info["due"]}'
 
     # creating the doc structure:
-    doc = SimpleDocTemplate(f'../Invoices/invoice.pdf', pagesize=letter, rightMargin=72,
+    doc = SimpleDocTemplate(f'Invoices/invoice.pdf', pagesize=letter, rightMargin=72,
                             leftMargin=72, topMargin=72, bottomMargin=18,
                             title=f'Invoice for Payment',
                             author='XYZ Accountants')
