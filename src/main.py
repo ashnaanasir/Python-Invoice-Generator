@@ -202,7 +202,8 @@ def generate_invoice(e) -> None:
 
     create_invoice(invoice)
 
-    webbrowser.open_new('/Invoices/invoice.pdf')
+    # TODO - ADD THE ABSOLUTE PATH TO Invoices/invoice.pdf and remove brackets
+    webbrowser.open_new('file:///[TO:DO - ADD ADBSOLUTE PATH HERE]')
     print('Invoice should automatically open in a chrome window, if it doesn\'t, please navigate '
           'to the invoice folder.')
 
