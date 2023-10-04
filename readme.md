@@ -2,6 +2,7 @@
 
 This repository contains the final project for CS111 Course at University of Toronto. Instead of opting to work with other teammates, I ended up building this project myself as I was stuck in a very different timezone than the rest of my classmates. This project was inspired by my hopes of automating some part of my dad's job, which involves creating bank reconciliations and invoices for businesses in UK. This project was a first attempt and a generic version. 
 
+![Invoice Generator Screen](image.png)
 ### How to run this:
 
 run  pip install -r requirements.txt and pip install tk
